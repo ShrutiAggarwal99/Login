@@ -29,7 +29,7 @@
 <script>
     window.fbAsyncInit = function() {
     FB.init({
-        appId: '589081144882435',
+        appId: '760924310940272',
         status: true,
         cookie: true,
         xfbml: true,
@@ -37,7 +37,6 @@
     });
     FB.Event.subscribe('edge.create', function(response) {
         alert('You liked the URL: ' + response);
-
       });
 };
 (function(d) {
@@ -51,30 +50,23 @@
     js.src = "//connect.facebook.net/en_US/all.js";
     d.getElementsByTagName('head')[0].appendChild(js);
 }(document));
-
 document.getElementById('shareBtn').onclick = function() {
   FB.ui(
 {
   method: 'share',
-  name: 'Facebook Dialogs',
-  link: 'https://developers.facebook.com/docs/',
-<!-- 
-  picture: 'http://fbrell.com/f8.jpg',
-  caption: 'Reference Documentation',
-  description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
-  -->
+  display: 'popup',
+  href: 'https://developers.facebook.com/docs/',
 },
 function(response) {
   if (response && response.post_id) {
-                          /** the user shared the content on their Facebook, go ahead and continue to download **/
-                          $('#ShareToDownload').fadeOut(function(){ $('#downloadSection').fadeIn() });    
-                          } else {
-                          /** the cancelled the share process, do something, for example **/
-                          alert('Please share this page to download this file'):
+    alert('Post was published.');
+  } else {
+    alert('Post was not published.');
+  }
 }
 );
-}
-        </script>
+} 
+ </script> 
 
 </body>
 </html>
