@@ -25,13 +25,17 @@
 
       });
 };
-(function(d, s, id) {
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) return;
-   js = d.createElement(s); js.id = id;
-   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2';
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
+(function(d) {
+    var js, id = 'facebook-jssdk';
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement('script');
+    js.id = id;
+    js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    d.getElementsByTagName('head')[0].appendChild(js);
+}(document));
 
 document.getElementById('shareBtn').onclick = function() {
   FB.ui(
@@ -45,10 +49,11 @@ document.getElementById('shareBtn').onclick = function() {
 },
 function(response) {
   if (response && response.post_id) {
-    alert('Post was published.');
-  } else {
-    alert('Post was not published.');
-  }
+                          /** the user shared the content on their Facebook, go ahead and continue to download **/
+                          $('#ShareToDownload').fadeOut(function(){ $('#downloadSection').fadeIn() });    
+                          } else {
+                          /** the cancelled the share process, do something, for example **/
+                          alert('Please share this page to download this file'):
 }
 );
 }
